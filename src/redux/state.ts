@@ -1,3 +1,5 @@
+let rerenderEntireTree = (state: RootStateType) => {}
+
 
 
 export type PostsType = {
@@ -19,6 +21,7 @@ export type DialogsPageType = {
 }
 export type PostsPageType = {
     posts: Array<PostsType>
+    newPostText: string
 }
 
 export type RootStateType = {
@@ -34,6 +37,7 @@ let state: RootStateType = {
             {id: 2, message: 'Boo', likesCount: 209},
             {id: 2, message: 'Bla-bla', likesCount: 5},
         ],
+        newPostText: 'it-kamasutra.com'
     },
     dialogsPage: {
         dialogs: [
@@ -51,14 +55,24 @@ let state: RootStateType = {
     }
 };
 
-export let addPost = (postMessage: string) => {
+export const addPost = () => {
     let newPost: PostsType = {
         id: 5,
-        message: postMessage,
+        message: state.postsPage.newPostText,
         likesCount: 0
     };
     state.postsPage.posts.push(newPost);
+    state.postsPage.newPostText = ''
+    rerenderEntireTree(state)
+}
 
+export const updateNewPostText = (newText: string) => {
+    state.postsPage.newPostText = newText;
+    rerenderEntireTree(state)
+}
+
+export const subscribe = (observer: (state: RootStateType) => void) => {
+    rerenderEntireTree = observer
 }
 
 export default state;
