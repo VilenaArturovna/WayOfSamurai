@@ -1,19 +1,36 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import styles from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
-import {DialogsPageType} from './../../redux/state'
+import {
+    ActionsTypes,
+    DialogsPageType,
+    DialogsType,
+    MessagesType,
+    sendMessageAC,
+    updateNewMessageTextAC
+} from './../../redux/state'
 
-function Dialogs(props: DialogsPageType) {
+type PropsType = {
+    dialogsPage: DialogsPageType
+    /*messages: MessagesType
+    newMessageText: string*/
+    dispatch: (action: ActionsTypes) => void
+}
 
-    let dialogsElements = props.dialogs.map(dialog => <DialogItem name={dialog.name} id={dialog.id}/>);
-    let messagesElements = props.messages.map(mess => <Message message={mess.message}/>);
+function Dialogs(props: PropsType) {
+
+    let dialogsElements = props.dialogsPage.dialogs.map(dialog => <DialogItem name={dialog.name} id={dialog.id}/>);
+    let messagesElements = props.dialogsPage.messages.map(mess => <Message message={mess.message}/>);
 
     let newMessage = React.createRef<HTMLTextAreaElement>();
 
-    let addMessage = () => {
-        let text = newMessage.current?.value;
-        alert(text);
+    let onSendMessageClick = () => {
+        props.dispatch(sendMessageAC())
+    }
+    let onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        let text = e.target.value;
+        props.dispatch(updateNewMessageTextAC(text))
     }
 
     return (
@@ -22,11 +39,11 @@ function Dialogs(props: DialogsPageType) {
                 {dialogsElements}
             </div>
             <div className={styles.messages}>
-                {messagesElements}
+                <div>{messagesElements}</div>
             </div>
             <div>
-                <textarea ref={newMessage}></textarea>
-                <button onClick={addMessage}>Submit</button>
+                <textarea value={props.dialogsPage.newMessageText} ref={newMessage} placeholder={'Enter your message'} onChange={onNewMessageChange}/>
+                <button onClick={onSendMessageClick}>Submit</button>
             </div>
 
         </div>

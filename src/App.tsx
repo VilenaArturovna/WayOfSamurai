@@ -18,14 +18,16 @@ type PropsType = {
 
 function App(props: PropsType) {
 
-        return (
+    return (
         <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
-                    <Route path='/dialogs' render={() => <Dialogs dialogs={props.appState.dialogsPage.dialogs} messages={props.appState.dialogsPage.messages}/>}/>
-                    <Route path='/profile' render={() => <Profile postsPage={props.appState.postsPage} dispatch={props.dispatch}/>} />
+                    <Route path='/dialogs' render={() => <Dialogs dialogsPage={props.appState.dialogsPage}
+                                                                  dispatch={props.dispatch}/>}/>
+                    <Route path='/profile'
+                           render={() => <Profile postsPage={props.appState.postsPage} dispatch={props.dispatch}/>}/>
                     <Route path='/news' render={() => <News/>}/>
                     <Route path='/music' render={() => <Music/>}/>
                     <Route path='/settings' render={() => <Settings/>}/>

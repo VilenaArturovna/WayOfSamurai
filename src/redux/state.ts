@@ -1,5 +1,3 @@
-const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 
 
 let store: StoreType = {
@@ -11,7 +9,7 @@ let store: StoreType = {
                 {id: 2, message: 'Boo', likesCount: 209},
                 {id: 2, message: 'Bla-bla', likesCount: 5},
             ],
-            newPostText: 'it-kamasutra.com'
+            newPostText: ''
         },
         dialogsPage: {
             dialogs: [
@@ -26,6 +24,7 @@ let store: StoreType = {
                 {id: 2, message: 'How are you?'},
                 {id: 3, message: 'I\'m fine'},
             ],
+            newMessageText: ''
         }
     },
     _onChange() {
@@ -48,8 +47,25 @@ let store: StoreType = {
             this._state.postsPage.posts.push(newPost);
             this._state.postsPage.newPostText = ''
             this._onChange(this._state)
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+        }
+
+        else if (action.type === 'UPDATE-NEW-POST-TEXT') {
             this._state.postsPage.newPostText = action.newText;
+            this._onChange(this._state)
+        }
+
+        else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
+            this._state.dialogsPage.newMessageText = action.body;
+            this._onChange(this._state)
+        }
+
+        else if (action.type === 'SEND-MESSAGE') {
+            let newMessage: MessagesType = {
+                id: 4,
+                message: this._state.dialogsPage.newMessageText
+            };
+            this._state.dialogsPage.messages.push(newMessage);
+            this._state.dialogsPage.newMessageText = '';
             this._onChange(this._state)
         }
     }
@@ -60,17 +76,18 @@ export type PostsType = {
     message: string
     likesCount: number
 }
-type DialogsType = {
+export type DialogsType = {
     id: number
     name: string
 }
-type MessagesType = {
+export type MessagesType = {
     id: number
     message: string
 }
 export type DialogsPageType = {
     dialogs: Array<DialogsType>
     messages: Array<MessagesType>
+    newMessageText: string
 }
 export type PostsPageType = {
     posts: Array<PostsType>
@@ -81,16 +98,30 @@ export type RootStateType = {
     dialogsPage: DialogsPageType
 }
 
-export type ActionsTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewPostTextActionCreator>
+export type ActionsTypes = ReturnType<typeof addPostActionCreator> |
+                           ReturnType<typeof updateNewPostTextActionCreator> |
+                           ReturnType<typeof updateNewMessageTextAC> |
+                           ReturnType<typeof sendMessageAC>
 export const addPostActionCreator = () => {
     return {
-        type: ADD_POST
+        type: 'ADD-POST'
     } as const
 }
 export const updateNewPostTextActionCreator = (text: string) => {
     return {
         type: 'UPDATE-NEW-POST-TEXT',
         newText: text
+    } as const
+}
+export const updateNewMessageTextAC = (text: string) => {
+    return {
+        type: 'UPDATE-NEW-MESSAGE-TEXT',
+        body: text
+    } as const
+}
+export const sendMessageAC = () => {
+    return {
+        type: 'SEND-MESSAGE'
     } as const
 }
 

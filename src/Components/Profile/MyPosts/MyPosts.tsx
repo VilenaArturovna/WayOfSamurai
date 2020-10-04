@@ -4,9 +4,7 @@ import Post from "./Post/Post";
 import {
     ActionsTypes,
     addPostActionCreator,
-    AddPostActionType,
     PostsType, updateNewPostTextActionCreator,
-    UpdateNewPostTextActionType
 } from "../../../redux/state";
 
 type NewPostType = {
