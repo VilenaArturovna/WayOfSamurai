@@ -1,7 +1,13 @@
 import React from 'react';
 import styles from './MyPosts.module.css';
 import Post from "./Post/Post";
-import {ActionsTypes, PostsType} from "../../../redux/state";
+import {
+    ActionsTypes,
+    addPostActionCreator,
+    AddPostActionType,
+    PostsType, updateNewPostTextActionCreator,
+    UpdateNewPostTextActionType
+} from "../../../redux/state";
 
 type NewPostType = {
     posts: Array<PostsType>
@@ -17,14 +23,14 @@ function MyPosts(props: NewPostType) {
 
     let addPost = () => {
         //props.addPost();
-        props.dispatch({type: 'ADD-POST'})
+        props.dispatch(addPostActionCreator())
     };
 
     let onChangePost = () => {
         if(newPostElement.current) {
             let text = newPostElement.current.value;
             //props.updateNewPostText(text)
-            props.dispatch({type: "UPDATE-NEW-POST-TEXT", newText: text})
+            props.dispatch(updateNewPostTextActionCreator(text))
         }
     }
 

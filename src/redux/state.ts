@@ -1,3 +1,7 @@
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+
+
 let store: StoreType = {
     _state: {
         postsPage: {
@@ -76,16 +80,19 @@ export type RootStateType = {
     postsPage: PostsPageType
     dialogsPage: DialogsPageType
 }
-export type AddPostActionType = {
-    type: 'ADD-POST'
-}
-export type UpdateNewPostTextActionType = {
-    type: 'UPDATE-NEW-POST-TEXT'
-    newText: string
-}
-export type ActionsTypes = AddPostActionType | UpdateNewPostTextActionType
 
-
+export type ActionsTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewPostTextActionCreator>
+export const addPostActionCreator = () => {
+    return {
+        type: ADD_POST
+    } as const
+}
+export const updateNewPostTextActionCreator = (text: string) => {
+    return {
+        type: 'UPDATE-NEW-POST-TEXT',
+        newText: text
+    } as const
+}
 
 export type StoreType = {
     _state: RootStateType
