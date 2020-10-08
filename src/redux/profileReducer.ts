@@ -1,6 +1,16 @@
 import {ActionsTypes, PostsPageType, PostsType} from "./store";
 
-export const profileReducer = (state: PostsPageType, action: ActionsTypes) => {
+let initialState = {
+    posts: [
+        {id: 1, message: 'Hello', likesCount: 12},
+        {id: 2, message: 'My name is...', likesCount: 25},
+        {id: 2, message: 'Boo', likesCount: 209},
+        {id: 2, message: 'Bla-bla', likesCount: 5},
+    ],
+    newPostText: ''
+}
+
+export const profileReducer = (state: PostsPageType = initialState, action: ActionsTypes) => {
     switch (action.type) {
         case 'ADD-POST':
             let newPost: PostsType = {
