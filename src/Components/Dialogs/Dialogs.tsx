@@ -6,10 +6,9 @@ import {
     ActionsTypes,
     DialogsPageType,
     DialogsType,
-    MessagesType,
-    sendMessageAC,
-    updateNewMessageTextAC
-} from './../../redux/state'
+    MessagesType
+} from '../../redux/store'
+import {sendMessageAC, updateNewMessageTextAC} from "../../redux/dialogsReducer";
 
 type PropsType = {
     dialogsPage: DialogsPageType

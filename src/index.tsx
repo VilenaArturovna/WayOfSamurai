@@ -2,7 +2,7 @@ import React from 'react';
 import './index.css';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import store, {RootStateType} from "./redux/state";
+import store, {RootStateType} from "./redux/store";
 import ReactDOM from "react-dom";
 import App from "./App";
 

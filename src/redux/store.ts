@@ -1,3 +1,5 @@
+import {addPostAC, profileReducer, updateNewPostTextAC} from "./profileReducer";
+import {dialogsReducer, sendMessageAC, updateNewMessageTextAC} from "./dialogsReducer";
 
 
 let store: StoreType = {
@@ -38,36 +40,10 @@ let store: StoreType = {
     },
 
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
-            let newPost: PostsType = {
-                id: 5,
-                message: this._state.postsPage.newPostText,
-                likesCount: 0
-            };
-            this._state.postsPage.posts.push(newPost);
-            this._state.postsPage.newPostText = ''
+        this._state.postsPage = profileReducer(this._state.postsPage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
             this._onChange(this._state)
-        }
 
-        else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-            this._state.postsPage.newPostText = action.newText;
-            this._onChange(this._state)
-        }
-
-        else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
-            this._state.dialogsPage.newMessageText = action.body;
-            this._onChange(this._state)
-        }
-
-        else if (action.type === 'SEND-MESSAGE') {
-            let newMessage: MessagesType = {
-                id: 4,
-                message: this._state.dialogsPage.newMessageText
-            };
-            this._state.dialogsPage.messages.push(newMessage);
-            this._state.dialogsPage.newMessageText = '';
-            this._onChange(this._state)
-        }
     }
 }
 
@@ -98,32 +74,10 @@ export type RootStateType = {
     dialogsPage: DialogsPageType
 }
 
-export type ActionsTypes = ReturnType<typeof addPostActionCreator> |
-                           ReturnType<typeof updateNewPostTextActionCreator> |
+export type ActionsTypes = ReturnType<typeof addPostAC> |
+                           ReturnType<typeof updateNewPostTextAC> |
                            ReturnType<typeof updateNewMessageTextAC> |
                            ReturnType<typeof sendMessageAC>
-export const addPostActionCreator = () => {
-    return {
-        type: 'ADD-POST'
-    } as const
-}
-export const updateNewPostTextActionCreator = (text: string) => {
-    return {
-        type: 'UPDATE-NEW-POST-TEXT',
-        newText: text
-    } as const
-}
-export const updateNewMessageTextAC = (text: string) => {
-    return {
-        type: 'UPDATE-NEW-MESSAGE-TEXT',
-        body: text
-    } as const
-}
-export const sendMessageAC = () => {
-    return {
-        type: 'SEND-MESSAGE'
-    } as const
-}
 
 export type StoreType = {
     _state: RootStateType

@@ -3,9 +3,9 @@ import styles from './MyPosts.module.css';
 import Post from "./Post/Post";
 import {
     ActionsTypes,
-    addPostActionCreator,
-    PostsType, updateNewPostTextActionCreator,
-} from "../../../redux/state";
+    PostsType
+} from "../../../redux/store";
+import {addPostAC, updateNewPostTextAC} from "../../../redux/profileReducer";
 
 type NewPostType = {
     posts: Array<PostsType>
@@ -21,14 +21,14 @@ function MyPosts(props: NewPostType) {
 
     let addPost = () => {
         //props.addPost();
-        props.dispatch(addPostActionCreator())
+        props.dispatch(addPostAC())
     };
 
     let onChangePost = () => {
         if(newPostElement.current) {
             let text = newPostElement.current.value;
             //props.updateNewPostText(text)
-            props.dispatch(updateNewPostTextActionCreator(text))
+            props.dispatch(updateNewPostTextAC(text))
         }
     }
 
