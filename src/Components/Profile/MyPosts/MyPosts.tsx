@@ -1,34 +1,29 @@
 import React from 'react';
 import styles from './MyPosts.module.css';
 import Post from "./Post/Post";
-import {
-    ActionsTypes,
-    PostsType
-} from "../../../redux/store";
-import {addPostAC, updateNewPostTextAC} from "../../../redux/profileReducer";
+import {PostsType} from "../../../redux/store";
 
-type NewPostType = {
+type PropsType = {
     posts: Array<PostsType>
-    dispatch: (action: ActionsTypes) => void
     newPostText: string
+    updateNewPostText: (text: string) => void
+    addPost: () => void
 }
 
-function MyPosts(props: NewPostType) {
+function MyPosts(props: PropsType) {
 
     let postsElements = props.posts.map(post => <Post message={post.message} likesCount={post.likesCount}/>);
 
     let newPostElement = React.createRef<HTMLTextAreaElement>();
 
-    let addPost = () => {
-        //props.addPost();
-        props.dispatch(addPostAC())
+    let onAddPost = () => {
+        props.addPost();
     };
 
     let onChangePost = () => {
-        if(newPostElement.current) {
+        if (newPostElement.current) {
             let text = newPostElement.current.value;
-            //props.updateNewPostText(text)
-            props.dispatch(updateNewPostTextAC(text))
+            props.updateNewPostText(text)
         }
     }
 
@@ -39,7 +34,7 @@ function MyPosts(props: NewPostType) {
                 <div>
                     <textarea ref={newPostElement} onChange={onChangePost} value={props.newPostText}/>
                 </div>
-                <button onClick={addPost}>Add post</button>
+                <button onClick={onAddPost}>Add post</button>
                 <button>Remove</button>
                 <div className={styles.posts}>
                     {postsElements}

@@ -2,19 +2,12 @@ import React, {ChangeEvent} from 'react';
 import styles from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
-import {
-    ActionsTypes,
-    DialogsPageType,
-    DialogsType,
-    MessagesType
-} from '../../redux/store'
-import {sendMessageAC, updateNewMessageTextAC} from "../../redux/dialogsReducer";
+import {DialogsPageType} from '../../redux/store'
 
 type PropsType = {
     dialogsPage: DialogsPageType
-    /*messages: MessagesType
-    newMessageText: string*/
-    dispatch: (action: ActionsTypes) => void
+    onSendMessageClick: () => void
+    onNewMessageChange: (text: string) => void
 }
 
 function Dialogs(props: PropsType) {
@@ -24,12 +17,9 @@ function Dialogs(props: PropsType) {
 
     let newMessage = React.createRef<HTMLTextAreaElement>();
 
-    let onSendMessageClick = () => {
-        props.dispatch(sendMessageAC())
-    }
     let onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let text = e.target.value;
-        props.dispatch(updateNewMessageTextAC(text))
+        props.onNewMessageChange(text)
     }
 
     return (
@@ -41,8 +31,9 @@ function Dialogs(props: PropsType) {
                 <div>{messagesElements}</div>
             </div>
             <div>
-                <textarea value={props.dialogsPage.newMessageText} ref={newMessage} placeholder={'Enter your message'} onChange={onNewMessageChange}/>
-                <button onClick={onSendMessageClick}>Submit</button>
+                <textarea value={props.dialogsPage.newMessageText} ref={newMessage} placeholder={'Enter your message'}
+                          onChange={onNewMessageChange}/>
+                <button onClick={props.onSendMessageClick}>Submit</button>
             </div>
 
         </div>
