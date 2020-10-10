@@ -7,14 +7,10 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import News from "./Components/News/News";
 import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
-import {StoreType} from "./redux/redux-store";
 import DialogsContainer from "./Components/Dialogs/DialogsContainer";
 
-type PropsType = {
-    store: StoreType
-}
 
-function App(props: PropsType) {
+function App() {
 
     return (
         <BrowserRouter>
@@ -22,9 +18,9 @@ function App(props: PropsType) {
                 <Header/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
-                    <Route path='/dialogs' render={() => <DialogsContainer store={props.store}/>}/>
+                    <Route path='/dialogs' render={() => <DialogsContainer/>}/>
                     <Route path='/profile'
-                           render={() => <Profile store={props.store}/>}/>
+                           render={() => <Profile/>}/>
                     <Route path='/news' render={() => <News/>}/>
                     <Route path='/music' render={() => <Music/>}/>
                     <Route path='/settings' render={() => <Settings/>}/>

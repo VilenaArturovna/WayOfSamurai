@@ -6,7 +6,7 @@ import {PostsType} from "../../../redux/store";
 type PropsType = {
     posts: Array<PostsType>
     newPostText: string
-    updateNewPostText: (text: string) => void
+    onChangePost: (text: string) => void
     addPost: () => void
 }
 
@@ -23,7 +23,7 @@ function MyPosts(props: PropsType) {
     let onChangePost = () => {
         if (newPostElement.current) {
             let text = newPostElement.current.value;
-            props.updateNewPostText(text)
+            props.onChangePost(text)
         }
     }
 
