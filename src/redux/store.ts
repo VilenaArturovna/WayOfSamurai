@@ -1,5 +1,6 @@
 import {addPostAC, profileReducer, updateNewPostTextAC} from "./profileReducer";
 import {dialogsReducer, sendMessageAC, updateNewMessageTextAC} from "./dialogsReducer";
+import {UsersType} from "./UsersReducer";
 
 
 let store: StoreType = {
@@ -27,6 +28,19 @@ let store: StoreType = {
                 {id: 3, message: 'I\'m fine'},
             ],
             newMessageText: ''
+        },
+        usersPage: {
+            users: [
+                {
+                    id: 1,
+                    followed: true,
+                    photoUrl: 'http://ru-ua.topnews.reviews/phpimage/1575285.jpg',
+                    fullName: 'Anna',
+                    status: 'Happy New Year!!',
+                    location: {city: 'Moscow', country: 'Russia'}
+                },
+            ],
+
         }
     },
     _onChange() {
@@ -72,6 +86,7 @@ export type PostsPageType = {
 export type RootStateType = {
     postsPage: PostsPageType
     dialogsPage: DialogsPageType
+    usersPage: UsersType
 }
 
 export type ActionsTypes = ReturnType<typeof addPostAC> |
