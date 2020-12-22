@@ -1,13 +1,17 @@
 export type UserType = {
+    name: string
     id: number
-    followed: boolean
-    photoUrl: string
-    fullName: string
+    uniqueUrlName: null
+    photos: {
+        small: string | null
+        large: string | null
+    }
     status: string
-    location: {
+    followed: boolean
+    /*location: {
         city: string
         country: string
-    }
+    }*/
 }
 export type UsersType = {
     users: Array<UserType>
@@ -18,23 +22,31 @@ export type UsersActionsTypes = ReturnType<typeof followAC> |
 
 let initialState = {
     users: [
-        {
+        /*{
             id: 1,
             followed: true,
-            photoUrl: 'http://ru-ua.topnews.reviews/phpimage/1575285.jpg',
-            fullName: 'Anna',
+            uniqueUrlName: null,
+            photos: {
+                small: null,
+                large: null
+            },
+            name: 'Anna',
             status: 'Happy New Year!!',
-            location: {city: 'Moscow', country: 'Russia'}
+            /!*location: {city: 'Moscow', country: 'Russia'}*!/
         },
         {
             id: 2,
             followed: true,
-            photoUrl: 'http://ru-ua.topnews.reviews/phpimage/1575285.jpg',
-            fullName: 'Helena',
+            uniqueUrlName: null,
+            photos: {
+                small: 'http://ru-ua.topnews.reviews/phpimage/1575285.jpg',
+                large: null
+            },
+            name: 'Helena',
             status: `Hello! I'm Helena :-)`,
-            location: {city: 'Minsk', country: 'Belarus'}
-        },
-        {
+            /!*location: {city: 'Minsk', country: 'Belarus'}*!/
+        },*/
+        /*{
             id: 3,
             followed: false,
             photoUrl: 'http://ru-ua.topnews.reviews/phpimage/1575285.jpg',
@@ -57,7 +69,7 @@ let initialState = {
             fullName: 'Irina',
             status: 'Fuck you all!! I am a fairy...',
             location: {city: 'Omsk', country: 'Russia'}
-        }
+        }*/
     ],
 
 }
@@ -69,7 +81,7 @@ export const usersReducer = (state: UsersType = initialState, action: UsersActio
         case 'UNFOLLOW':
             return {...state, users: state.users.map(u => {return u.id === action.userId ? {...u, followed: false} : u })}
         case 'SET-USERS':
-            return {...state, users: [...state.users, action.users]}
+            return {...state, users:  action.users}  //не копировать стэйт!!
         default:
             return state
     }

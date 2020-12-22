@@ -2,8 +2,7 @@ import {addPostAC, profileReducer, updateNewPostTextAC} from "./profileReducer";
 import {dialogsReducer, sendMessageAC, updateNewMessageTextAC} from "./dialogsReducer";
 import {UsersType} from "./UsersReducer";
 
-
-let store: StoreType = {
+/*let store: StoreType = {
     _state: {
         postsPage: {
             posts: [
@@ -34,8 +33,11 @@ let store: StoreType = {
                 {
                     id: 1,
                     followed: true,
-                    photoUrl: 'http://ru-ua.topnews.reviews/phpimage/1575285.jpg',
-                    fullName: 'Anna',
+                    photos: {
+                        small: 'http://ru-ua.topnews.reviews/phpimage/1575285.jpg',
+                        large: null
+                    },
+                    name: 'Anna',
                     status: 'Happy New Year!!',
                     location: {city: 'Moscow', country: 'Russia'}
                 },
@@ -59,7 +61,7 @@ let store: StoreType = {
             this._onChange(this._state)
 
     }
-}
+}*/
 
 export type PostsType = {
     id: number
@@ -94,6 +96,7 @@ export type ActionsTypes = ReturnType<typeof addPostAC> |
                            ReturnType<typeof updateNewMessageTextAC> |
                            ReturnType<typeof sendMessageAC>
 
+/*
 export type StoreType = {
     _state: RootStateType
     _onChange: (state: RootStateType) => void
@@ -105,4 +108,4 @@ export type StoreType = {
 
 }
 
-export default store;
+export default store;*/

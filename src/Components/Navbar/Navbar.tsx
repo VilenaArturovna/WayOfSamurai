@@ -20,6 +20,9 @@ function Navbar() {
             <div className={styles.item}>
                 <NavLink to='/Settings' activeClassName={styles.active}>Settings</NavLink>
             </div>
+            <div className={styles.item}>
+                <NavLink to='/Users' activeClassName={styles.active}>Users</NavLink>
+            </div>
         </nav>
     )
 }
