@@ -5,7 +5,7 @@ export default function Header() {
     return (
         <header className={styles.header}>
             <img
-                src="https://img2.freepng.ru/20180402/hyw/kisspng-autodesk-revit-logo-autodesk-inventor-autocad-a-letter-5ac291f7668176.6275410715227007914199.jpg"/>
+                src="https://www.seekpng.com/png/full/402-4022115_some-logos-are-clickable-and-available-in-large.png"/>
         </header>
     )
 }

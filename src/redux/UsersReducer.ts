@@ -18,67 +18,21 @@ export type UsersType = {
     pageSize: number
     totalUsersCount: number
     currentPage: number
+    isFetching: boolean
 }
 export type UsersActionsTypes = ReturnType<typeof followAC> |
                     ReturnType<typeof unfollowAC> |
                     ReturnType<typeof setUsersAC> |
                     ReturnType<typeof setCurrentPageAC> |
-                    ReturnType<typeof setTotalUsersCountAC>
+                    ReturnType<typeof setTotalUsersCountAC> |
+                    ReturnType<typeof toggleIsFetchingAC>
 
 let initialState = {
-    users: [
-        /*{
-            id: 1,
-            followed: true,
-            uniqueUrlName: null,
-            photos: {
-                small: null,
-                large: null
-            },
-            name: 'Anna',
-            status: 'Happy New Year!!',
-            /!*location: {city: 'Moscow', country: 'Russia'}*!/
-        },
-        {
-            id: 2,
-            followed: true,
-            uniqueUrlName: null,
-            photos: {
-                small: 'http://ru-ua.topnews.reviews/phpimage/1575285.jpg',
-                large: null
-            },
-            name: 'Helena',
-            status: `Hello! I'm Helena :-)`,
-            /!*location: {city: 'Minsk', country: 'Belarus'}*!/
-        },*/
-        /*{
-            id: 3,
-            followed: false,
-            photoUrl: 'http://ru-ua.topnews.reviews/phpimage/1575285.jpg',
-            fullName: 'Kate',
-            status: 'I am flying...',
-            location: {city: 'St. Petersburg', country: 'Russia'}
-        },
-        {
-            id: 4,
-            followed: false,
-            photoUrl: 'http://ru-ua.topnews.reviews/phpimage/1575285.jpg',
-            fullName: 'Svetlana',
-            status: 'How are you?',
-            location: {city: 'Omsk', country: 'Russia'}
-        },
-        {
-            id: 5,
-            followed: true,
-            photoUrl: 'http://ru-ua.topnews.reviews/phpimage/1575285.jpg',
-            fullName: 'Irina',
-            status: 'Fuck you all!! I am a fairy...',
-            location: {city: 'Omsk', country: 'Russia'}
-        }*/
-    ],
+    users: [  ],
     pageSize: 5,
     totalUsersCount: 0,
     currentPage: 1,
+    isFetching: false,
 }
 
 export const usersReducer = (state: UsersType = initialState, action: UsersActionsTypes) => {
@@ -93,6 +47,8 @@ export const usersReducer = (state: UsersType = initialState, action: UsersActio
             return {...state, currentPage: action.currentPage}
         case "SET-TOTAL-USERS-COUNT":
             return {...state, totalUsersCount: action.totalUsersCount}
+        case "TOGGLE-IS-FETCHING":
+            return {...state, isFetching: action.isFetching}
         default:
             return state
     }
@@ -126,5 +82,11 @@ export const setTotalUsersCountAC = (totalUsersCount: number) => {
     return {
         type: 'SET-TOTAL-USERS-COUNT',
         totalUsersCount
+    } as const
+}
+export const toggleIsFetchingAC = (isFetching: boolean) => {
+    return {
+        type: 'TOGGLE-IS-FETCHING',
+        isFetching
     } as const
 }
