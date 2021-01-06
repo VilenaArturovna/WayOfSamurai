@@ -20,12 +20,12 @@ export type UsersType = {
     currentPage: number
     isFetching: boolean
 }
-export type UsersActionsTypes = ReturnType<typeof followAC> |
-                    ReturnType<typeof unfollowAC> |
-                    ReturnType<typeof setUsersAC> |
-                    ReturnType<typeof setCurrentPageAC> |
-                    ReturnType<typeof setTotalUsersCountAC> |
-                    ReturnType<typeof toggleIsFetchingAC>
+export type UsersActionsTypes = ReturnType<typeof follow> |
+                    ReturnType<typeof unfollow> |
+                    ReturnType<typeof setUsers> |
+                    ReturnType<typeof setCurrentPage> |
+                    ReturnType<typeof setTotalUsersCount> |
+                    ReturnType<typeof toggleIsFetching>
 
 let initialState = {
     users: [  ],
@@ -54,37 +54,37 @@ export const usersReducer = (state: UsersType = initialState, action: UsersActio
     }
 }
 
-export const followAC = (userId: number) => {
+export const follow = (userId: number) => {
     return {
         type: 'FOLLOW',
         userId
     } as const
 }
-export const unfollowAC = (userId: number) => {
+export const unfollow = (userId: number) => {
     return {
         type: 'UNFOLLOW',
         userId
     } as const
 }
-export const setUsersAC =(users: UsersType) => {
+export const setUsers = (users: UsersType) => {
     return {
         type: 'SET-USERS',
         users
     } as const
 }
-export const setCurrentPageAC = (currentPage: number) => {
+export const setCurrentPage = (currentPage: number) => {
     return {
         type: 'SET-CURRENT-PAGE',
         currentPage
     } as const
 }
-export const setTotalUsersCountAC = (totalUsersCount: number) => {
+export const setTotalUsersCount = (totalUsersCount: number) => {
     return {
         type: 'SET-TOTAL-USERS-COUNT',
         totalUsersCount
     } as const
 }
-export const toggleIsFetchingAC = (isFetching: boolean) => {
+export const toggleIsFetching = (isFetching: boolean) => {
     return {
         type: 'TOGGLE-IS-FETCHING',
         isFetching
