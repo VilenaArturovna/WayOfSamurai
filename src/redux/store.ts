@@ -2,66 +2,27 @@ import {addPostAC, profileReducer, updateNewPostTextAC} from "./profileReducer";
 import {dialogsReducer, sendMessageAC, updateNewMessageTextAC} from "./dialogsReducer";
 import {UsersType} from "./UsersReducer";
 
-/*let store: StoreType = {
-    _state: {
-        postsPage: {
-            posts: [
-                {id: 1, message: 'Hello', likesCount: 12},
-                {id: 2, message: 'My name is...', likesCount: 25},
-                {id: 2, message: 'Boo', likesCount: 209},
-                {id: 2, message: 'Bla-bla', likesCount: 5},
-            ],
-            newPostText: ''
-        },
-        dialogsPage: {
-            dialogs: [
-                {id: 1, name: 'Anna'},
-                {id: 2, name: 'Helena'},
-                {id: 3, name: 'Kate'},
-                {id: 4, name: 'Svetlana'},
-                {id: 5, name: 'Natalie'}
-            ],
-            messages: [
-                {id: 1, message: 'Hi'},
-                {id: 2, message: 'How are you?'},
-                {id: 3, message: 'I\'m fine'},
-            ],
-            newMessageText: ''
-        },
-        usersPage: {
-            users: [
-                {
-                    id: 1,
-                    followed: true,
-                    photos: {
-                        small: 'http://ru-ua.topnews.reviews/phpimage/1575285.jpg',
-                        large: null
-                    },
-                    name: 'Anna',
-                    status: 'Happy New Year!!',
-                    location: {city: 'Moscow', country: 'Russia'}
-                },
-            ],
-
-        }
-    },
-    _onChange() {
-    },
-
-    getState() {
-        return this._state
-    },
-    subscribe(observer) {
-        this._onChange = observer
-    },
-
-    dispatch(action) {
-        this._state.postsPage = profileReducer(this._state.postsPage, action)
-        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
-            this._onChange(this._state)
-
+export type ProfileType = {
+    aboutMe: string
+    contacts: {
+        facebook: string | null
+        website: string | null
+        vk: string | null
+        twitter: string | null
+        instagram: string | null
+        youtube: string | null
+        github: string | null
+        mainLink: string | null
     }
-}*/
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    userId: number
+    photos: {
+        small: string | null
+        large: string | null
+    }
+}
 
 export type PostsType = {
     id: number
@@ -84,6 +45,7 @@ export type DialogsPageType = {
 export type PostsPageType = {
     posts: Array<PostsType>
     newPostText: string
+    profile: ProfileType
 }
 export type RootStateType = {
     postsPage: PostsPageType
@@ -96,16 +58,4 @@ export type ActionsTypes = ReturnType<typeof addPostAC> |
                            ReturnType<typeof updateNewMessageTextAC> |
                            ReturnType<typeof sendMessageAC>
 
-/*
-export type StoreType = {
-    _state: RootStateType
-    _onChange: (state: RootStateType) => void
 
-    getState: () => RootStateType
-    subscribe: (observer: (state: RootStateType) => void) => void
-
-    dispatch: (action: ActionsTypes) => void
-
-}
-
-export default store;*/

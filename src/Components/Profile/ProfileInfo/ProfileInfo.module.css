@@ -5,3 +5,12 @@
 .descriptionBlock {
     padding: 10px;
 }
+
+.name {
+    padding: 10px;
+    font-size: x-large;
+}
+
+.aboutMe {
+    margin-bottom: 10px;
+}

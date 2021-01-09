@@ -30,7 +30,7 @@ type PropsType = {
     toggleIsFetching: (isFetching: boolean) => void
 }
 
-class UsersComponent extends React.Component<PropsType, any> {
+class UsersContainer extends React.Component<PropsType, any> {
     /*constructor(props: PropsType) {
         super(props);
     }*/
@@ -99,4 +99,4 @@ const mapDispatchToProps = (dispatch: (action: UsersActionsTypes) => void) => {
 }
 */
 
-export default connect(mapStateToProps, {follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching}) (UsersComponent)
+export default connect(mapStateToProps, {follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching}) (UsersContainer)
