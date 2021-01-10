@@ -1,5 +1,3 @@
-import {ReactNode} from "react";
-
 export type AuthDataType = {
     id: number | null
     email: string | null
@@ -21,7 +19,7 @@ let initialState = {
 export const authReducer = (state: AuthDataType = initialState, action: AuthActionsTypes) => {
     switch (action.type) {
         case 'SET-USER-DATA':
-            debugger
+
             return {...state, ...action.data, isAuth: true}
         /*case "TOGGLE-IS-FETCHING":
             return {...state, isFetching: action.isFetching}*/
@@ -31,7 +29,7 @@ export const authReducer = (state: AuthDataType = initialState, action: AuthActi
 }
 
 export const setAuthUserData = (data: AuthDataType) => {
-    debugger
+
     return {
         type: 'SET-USER-DATA',
         data

@@ -19,8 +19,6 @@ let mapStateToProps = (state: RootStateType): MapStatePropsType => {
     }
 }
 
-
 const DialogsContainer = connect(mapStateToProps, {updateNewMessageText, sendMessage})(Dialogs)
-
 
 export default DialogsContainer;
