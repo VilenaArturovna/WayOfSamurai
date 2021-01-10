@@ -1,8 +1,8 @@
 import {PostsPageType, PostsType, ProfileType} from "./store";
 
 
-type ActionsTypes = ReturnType<typeof addPostAC> |
-    ReturnType<typeof updateNewPostTextAC> |
+type ActionsTypes = ReturnType<typeof addPost> |
+    ReturnType<typeof updateNewPostText> |
     ReturnType<typeof setProfile>
 
 let initialState = {
@@ -59,12 +59,12 @@ export const profileReducer = (state: PostsPageType = initialState, action: Acti
     }
 }
 
-export const addPostAC = () => {
+export const addPost = () => {
     return {
         type: 'ADD-POST'
     } as const
 }
-export const updateNewPostTextAC = (text: string) => {
+export const updateNewPostText = (text: string) => {
     return {
         type: 'UPDATE-NEW-POST-TEXT',
         newText: text

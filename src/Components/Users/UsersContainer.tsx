@@ -7,7 +7,6 @@ import {
     setUsers,
     toggleIsFetching,
     unfollow,
-    UsersActionsTypes,
     UsersType,
     UserType
 } from "../../redux/UsersReducer";
@@ -16,19 +15,22 @@ import axios from "axios";
 import {Users} from "./Users";
 import {Preloader} from "../Common/Preloader/Preloader";
 
-type PropsType = {
+type MapStatePropsType = {
     users: Array<UserType>
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
+    isFetching: boolean
+}
+type MapDispatchPropsType = {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     setUsers: (users: UsersType) => void
     setCurrentPage: (currentPage: number) => void
     setTotalUsersCount: (totalUsersCount: number) => void
-    pageSize: number
-    totalUsersCount: number
-    currentPage: number
-    isFetching: boolean
     toggleIsFetching: (isFetching: boolean) => void
 }
+type PropsType = MapStatePropsType & MapDispatchPropsType
 
 class UsersContainer extends React.Component<PropsType, any> {
     /*constructor(props: PropsType) {

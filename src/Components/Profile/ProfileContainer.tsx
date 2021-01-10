@@ -1,12 +1,10 @@
 import React from 'react';
-import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import Profile from "./Profile";
 import axios from "axios";
 import {connect} from "react-redux";
 import {setProfile} from "../../redux/profileReducer";
 import {ProfileType, RootStateType} from "../../redux/store";
-import { withRouter, RouteComponentProps } from 'react-router-dom';
+import {RouteComponentProps, withRouter} from 'react-router-dom';
 
 type MapStatePropsType = {
     profile: ProfileType

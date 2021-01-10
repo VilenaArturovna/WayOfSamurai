@@ -23,12 +23,7 @@ export function Users(props: PropsType) {
 
     return (
         <div>
-            {pages.map(p => {
-                return <span className={props.currentPage === p ? styles.selectedPage : ''}
-                             onClick={(e) => {
-                                 props.onPageChanged(p)
-                             }}>{p} </span>
-            })}
+
             {props.users.map(u => <div key={u.id}>
                     <span>
                         <div>
@@ -53,6 +48,12 @@ export function Users(props: PropsType) {
                     </span>
             </div>)
             }
+            {pages.map(p => {
+                return <span className={props.currentPage === p ? styles.selectedPage : ''}
+                             onClick={(e) => {
+                                 props.onPageChanged(p)
+                             }}>{p} </span>
+            })}
         </div>
     )
 }

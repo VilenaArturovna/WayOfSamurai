@@ -4,10 +4,11 @@ import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
 import {DialogsPageType} from '../../redux/store'
 
+
 type PropsType = {
     dialogsPage: DialogsPageType
-    onSendMessageClick: () => void
-    onNewMessageChange: (text: string) => void
+    sendMessage: () => void
+    updateNewMessageText: (text: string) => void
 }
 
 function Dialogs(props: PropsType) {
@@ -19,7 +20,7 @@ function Dialogs(props: PropsType) {
 
     let onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let text = e.target.value;
-        props.onNewMessageChange(text)
+        props.updateNewMessageText(text)
     }
 
     return (
@@ -33,7 +34,7 @@ function Dialogs(props: PropsType) {
             <div>
                 <textarea value={props.dialogsPage.newMessageText} ref={newMessage} placeholder={'Enter your message'}
                           onChange={onNewMessageChange}/>
-                <button onClick={props.onSendMessageClick}>Submit</button>
+                <button onClick={props.sendMessage}>Submit</button>
             </div>
 
         </div>

@@ -2,11 +2,12 @@ import React from 'react';
 import styles from './MyPosts.module.css';
 import Post from "./Post/Post";
 import {PostsType} from "../../../redux/store";
+import {updateNewPostText} from "../../../redux/profileReducer";
 
 type PropsType = {
     posts: Array<PostsType>
     newPostText: string
-    onChangePost: (text: string) => void
+    updateNewPostText: (text: string) => void
     addPost: () => void
 }
 
@@ -23,7 +24,7 @@ function MyPosts(props: PropsType) {
     let onChangePost = () => {
         if (newPostElement.current) {
             let text = newPostElement.current.value;
-            props.onChangePost(text)
+            props.updateNewPostText(text)
         }
     }
 

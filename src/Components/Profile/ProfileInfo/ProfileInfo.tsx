@@ -2,7 +2,16 @@ import React from 'react';
 import styles from './ProfileInfo.module.css';
 import {ProfileType} from "../../../redux/store";
 import {Preloader} from "../../Common/Preloader/Preloader";
-import { NavLink, Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
+import mountain from "../../../assets/images/landscape-mountain.jpg"
+import facebook from "./../../../assets/images/facebook.svg"
+import website from "../../../assets/images/website.svg"
+import vk from "../../../assets/images/vk.svg"
+import twitter from "../../../assets/images/twitter_icon-icons.com_66093.svg"
+import instagram from "../../../assets/images/instagram_108043.svg"
+import youtube from "../../../assets/images/circle-youtube_icon-icons.com_66837.svg"
+import github from "../../../assets/images/github_icon-icons.com_65450.svg"
+import mainlink from "../../../assets/images/mainLink.svg"
 
 type PropsType = {
     profile: ProfileType
@@ -15,12 +24,12 @@ function ProfileInfo(props: PropsType) {
         return (
             <div>
                 <div>
-                    <img className={styles.img}
-                         src={'https://get.wallhere.com/photo/landscape-Terrain-mountain-screenshot-computer-wallpaper-geological-phenomenon-extreme-sport-5120x1600-px-709770.jpg'}/>
+                    <img className={styles.img} alt={'123'}
+                         src={mountain}/>
                 </div>
                 <div className={styles.descriptionBlock}>
-                    <img
-                        src={props.profile.photos.large || ''}/>
+                    <img alt={'ProfilePhoto'}
+                         src={props.profile.photos.large || ''}/>
                 </div>
                 <div className={styles.name}>
                     {props.profile.fullName}
@@ -37,14 +46,30 @@ function ProfileInfo(props: PropsType) {
                     {props.profile.lookingForAJob ? <div>{props.profile.lookingForAJobDescription}</div> : ''}
                 </div>
                 <div>
-                    <img src="./../../../assets/images/facebook.svg" alt="facebook">{/*<Link to={props.profile.contacts.facebook || ''} ></Link>*/}</img>
-                    <img src="../../../assets/images/website.svg" alt="website">{/*<a href={props.profile.contacts.website || ''}></a>*/}</img>
-                    <img src="../../../assets/images/vk.svg" alt="vk">{/*<a href={props.profile.contacts.vk || ''}></a>*/}</img>
-                    <img src="../../../assets/images/twitter_icon-icons.com_66093.svg" alt="twitter">{/*<a href={props.profile.contacts.twitter || ''}></a>*/}</img>
-                    <img src="../../../assets/images/instagram_108043.svg" alt="instagram">{/*<a href={props.profile.contacts.instagram || ''}></a>*/}</img>
-                    <img src="../../../assets/images/circle-youtube_icon-icons.com_66837.svg" alt="youtube">{/*<a href={props.profile.contacts.youtube || ''}></a>*/}</img>
-                    <img src="../../../assets/images/github_icon-icons.com_65450.svg" alt="github">{/*<a href={props.profile.contacts.github || ''}></a>*/}</img>
-                    <img src="../../../assets/images/mainLink.svg" alt="mainLink">{/*<a href={props.profile.contacts.mainLink || ''}></a>*/}</img>
+                    <Link to={props.profile.contacts.facebook || ''}>
+                        <img src={facebook} alt="facebook" className={styles.imgContact}/>
+                    </Link>
+                    <Link to={props.profile.contacts.website || ''}>
+                        <img src={website} alt="website" className={styles.imgContact}/>
+                    </Link>
+                    <Link to={props.profile.contacts.vk || ''}>
+                        <img src={vk} alt="vk" className={styles.imgContact}/>
+                    </Link>
+                    <Link to={props.profile.contacts.twitter || ''}>
+                        <img src={twitter} alt="twitter" className={styles.imgContact}/>
+                    </Link>
+                    <Link to={props.profile.contacts.instagram || ''}>
+                        <img src={instagram} alt="instagram" className={styles.imgContact}/>
+                    </Link>
+                    <Link to={props.profile.contacts.youtube || ''}>
+                        <img src={youtube} alt="youtube" className={styles.imgContact}/>
+                    </Link>
+                    <Link to={props.profile.contacts.github || ''}>
+                        <img src={github} alt="github" className={styles.imgContact}/>
+                    </Link>
+                    <Link to={props.profile.contacts.mainLink || ''}>
+                        <img src={mainlink} alt="mainLink" className={styles.imgContact}/>
+                    </Link>
                 </div>
             </div>
         )

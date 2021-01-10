@@ -1,6 +1,5 @@
-import {addPostAC, profileReducer, updateNewPostTextAC} from "./profileReducer";
-import {dialogsReducer, sendMessageAC, updateNewMessageTextAC} from "./dialogsReducer";
 import {UsersType} from "./UsersReducer";
+import {AuthDataType} from "./authReducer";
 
 export type ProfileType = {
     aboutMe: string
@@ -51,11 +50,6 @@ export type RootStateType = {
     postsPage: PostsPageType
     dialogsPage: DialogsPageType
     usersPage: UsersType
+    auth: AuthDataType
 }
-
-export type ActionsTypes = ReturnType<typeof addPostAC> |
-                           ReturnType<typeof updateNewPostTextAC> |
-                           ReturnType<typeof updateNewMessageTextAC> |
-                           ReturnType<typeof sendMessageAC>
-
 
