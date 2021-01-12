@@ -1,3 +1,6 @@
+import {Dispatch} from "redux";
+import {authAPI} from "../api/api";
+
 export type AuthDataType = {
     id: number | null
     email: string | null
@@ -6,8 +9,7 @@ export type AuthDataType = {
 
 }
 
-type AuthActionsTypes = ReturnType<typeof setAuthUserData> /*|
-                  ReturnType<typeof toggleIsFetching>*/
+type AuthActionsTypes = ReturnType<typeof setAuthUserDataAC>
 
 let initialState = {
     id: null,
@@ -28,17 +30,21 @@ export const authReducer = (state: AuthDataType = initialState, action: AuthActi
     }
 }
 
-export const setAuthUserData = (data: AuthDataType) => {
-
+export const setAuthUserDataAC = (data: AuthDataType) => {
     return {
         type: 'SET-USER-DATA',
         data
     } as const
 }
 
-/*export const toggleIsFetching = (isFetching: boolean) => {
-    return {
-        type: 'TOGGLE-IS-FETCHING',
-        isFetching
-    } as const
-}*/
+export const setAuthUserData = () => {
+    return (dispatch: Dispatch<AuthActionsTypes>) => {
+        authAPI.authMe().then(data => {
+            if (data.resultCode === 0) {
+                dispatch(setAuthUserDataAC(data.data))
+            }
+        })
+    }
+}
+
+

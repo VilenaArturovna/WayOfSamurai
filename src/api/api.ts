@@ -27,3 +27,9 @@ export const followAPI = {
         return instance.delete('follow/' + id,).then(response => response.data)
     }
 }
+
+export const profileAPI = {
+    getProfile(userId: string) {
+        return instance.get(`profile/` + userId)
+    }
+}

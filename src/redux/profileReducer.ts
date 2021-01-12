@@ -1,4 +1,6 @@
 import {PostsPageType, PostsType, ProfileType} from "./store";
+import {Dispatch} from "redux";
+import {profileAPI} from "../api/api";
 
 
 type ActionsTypes = ReturnType<typeof addPost> |
@@ -45,11 +47,9 @@ export const profileReducer = (state: PostsPageType = initialState, action: Acti
                 likesCount: 0
             };
             return {...state, newPostText: '', posts: [...state.posts, newPost]};
-            break;
         }
         case 'UPDATE-NEW-POST-TEXT': {
             return {...state, newPostText: action.newText};
-            break;
         }
         case 'SET-PROFILE': {
             return  {...state, profile: action.profile}
@@ -75,4 +75,11 @@ export const setProfile = (profile: ProfileType) => {
         type: 'SET-PROFILE',
         profile
     } as const
+}
+
+export const getProfile = (userId: string) => {
+    return (dispatch: Dispatch<ActionsTypes>) => {
+        profileAPI.getProfile(userId).then(response => {
+            dispatch(setProfile(response.data)) })
+    }
 }
