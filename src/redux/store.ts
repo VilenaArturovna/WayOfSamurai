@@ -45,9 +45,10 @@ export type PostsPageType = {
     posts: Array<PostsType>
     newPostText: string
     profile: ProfileType
+    status: string
 }
 export type RootStateType = {
-    postsPage: PostsPageType
+    profilePage: PostsPageType
     dialogsPage: DialogsPageType
     usersPage: UsersType
     auth: AuthDataType

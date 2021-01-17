@@ -16,6 +16,8 @@ import ProfileStatus from "./ProfileStatus";
 
 type PropsType = {
     profile: ProfileType
+    status: string
+    updateStatus: (status: string) => void
 }
 
 function ProfileInfo(props: PropsType) {
@@ -35,7 +37,9 @@ function ProfileInfo(props: PropsType) {
                 <div className={styles.name}>
                     {props.profile.fullName}
                 </div>
-                <ProfileStatus status={"Hello"}/>
+                <div className={styles.status}>
+                    <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+                </div>
                 <div className={styles.aboutMe}>
                     About me:
                     <div>
