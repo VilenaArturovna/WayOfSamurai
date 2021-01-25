@@ -31,19 +31,20 @@ export type PostsType = {
 export type DialogsType = {
     id: number
     name: string
+
 }
 export type MessagesType = {
     id: number
     message: string
+
 }
 export type DialogsPageType = {
     dialogs: Array<DialogsType>
     messages: Array<MessagesType>
-    newMessageText: string
 }
 export type PostsPageType = {
     posts: Array<PostsType>
-    newPostText: string
+
     profile: ProfileType
     status: string
 }

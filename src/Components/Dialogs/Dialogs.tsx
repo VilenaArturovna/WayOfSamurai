@@ -1,14 +1,17 @@
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import styles from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
 import {DialogsPageType} from '../../redux/store'
+import {Field, InjectedFormProps, reduxForm} from "redux-form";
+import {sendMessage} from "../../redux/dialogsReducer";
+import {Textarea} from "../Common/FormsControls/FormsControls";
+import {maxLengthCreator, requiredField} from "../../utils/validators/validators";
 
 
 type PropsType = {
     dialogsPage: DialogsPageType
-    sendMessage: () => void
-    updateNewMessageText: (text: string) => void
+    sendMessage: (newMessageText: string) => void
     isAuth: boolean
 }
 
@@ -17,11 +20,9 @@ function Dialogs(props: PropsType) {
     let dialogsElements = props.dialogsPage.dialogs.map(dialog => <DialogItem name={dialog.name} id={dialog.id}/>);
     let messagesElements = props.dialogsPage.messages.map(mess => <Message message={mess.message}/>);
 
-    let newMessage = React.createRef<HTMLTextAreaElement>();
-
-    let onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        let text = e.target.value;
-        props.updateNewMessageText(text)
+    let addNewMessage = (values: FormDataType) => {
+        debugger
+        sendMessage(values.newMessageText)
     }
 
     return (
@@ -33,13 +34,30 @@ function Dialogs(props: PropsType) {
                 <div>{messagesElements}</div>
             </div>
             <div>
-                <textarea value={props.dialogsPage.newMessageText} ref={newMessage} placeholder={'Enter your message'}
-                          onChange={onNewMessageChange}/>
-                <button onClick={props.sendMessage}>Submit</button>
+                <AddMessageFormRedux onSubmit={addNewMessage}/>
             </div>
 
         </div>
     )
 }
+
+type FormDataType = {
+    newMessageText: string
+}
+
+const maxLength20 = maxLengthCreator(20)
+
+function AddMessageForm(props: InjectedFormProps<FormDataType>) {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <Field component={Textarea} name={'newMessageBody'} placeholder={'Enter your message'} validate={[requiredField, maxLength20]}/>
+
+            <button>Submit</button>
+        </form>
+    )
+}
+
+const AddMessageFormRedux = reduxForm<FormDataType>({form: 'AddMessageForm'})(AddMessageForm)
+
 
 export default Dialogs;
