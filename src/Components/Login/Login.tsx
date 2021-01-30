@@ -11,6 +11,7 @@ export type FormDataType = {
     email: string
     password: string
     rememberMe: boolean
+    error?: string
 }
 
 type PropsType = {
@@ -34,6 +35,7 @@ function Login(props: PropsType) {
 }
 
 function LoginForm (props: InjectedFormProps<FormDataType>) {
+
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
@@ -41,6 +43,10 @@ function LoginForm (props: InjectedFormProps<FormDataType>) {
             </div>
             <div>
                 <Field component={Input} name={'password'} placeholder={'Password'} type={'password'} validate={[requiredField]}/>
+            </div>
+            <div>
+
+                {props.error && <div>{props.error}</div>}
             </div>
             <div>
                 <Field component={Input} name={'rememberMe'} type={'checkbox'}/> Remember me

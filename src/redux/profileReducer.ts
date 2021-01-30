@@ -81,7 +81,7 @@ export const setStatus = (status: string) => {
     } as const
 }
 
-export const getProfile = (userId: string) => {
+export const getProfile = (userId: number) => {
     return (dispatch: Dispatch<ActionsTypes>) => {
         profileAPI.getProfile(userId).then(response => {
             dispatch(setProfile(response.data))
