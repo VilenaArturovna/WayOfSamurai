@@ -1,7 +1,8 @@
-import {Dispatch} from "redux";
+import {ThunkAction, ThunkDispatch} from "redux-thunk";
 import {authAPI} from "../api/api";
 import {FormDataType} from "../Components/Login/Login";
-import {act} from "react-dom/test-utils";
+import {RootStateType} from "./store";
+
 
 export type AuthDataType = {
     id: number | null
@@ -18,7 +19,7 @@ type loginType = {
 */
 
 
-type AuthActionsTypes = ReturnType<typeof setAuthUserDataAC> | ReturnType<typeof loginAC>
+type AuthActionsTypes = ReturnType<typeof setAuthUserDataAC>
 
 let initialState = {
     id: null,
@@ -30,45 +31,57 @@ let initialState = {
 export const authReducer = (state: AuthDataType = initialState, action: AuthActionsTypes) => {
     switch (action.type) {
         case 'SET-USER-DATA':
-            return {...state, ...action.data, isAuth: true}
-        case "LOGIN":
-            return {...state, ...action.data}
-        /*case "TOGGLE-IS-FETCHING":
-            return {...state, isFetching: action.isFetching}*/
+            return {...state, ...action.payload}
+
         default:
             return state
     }
 }
 
-const setAuthUserDataAC = (data: AuthDataType) => {
+const setAuthUserDataAC = ({id, login, email, isAuth}: AuthDataType) => {
     return {
         type: 'SET-USER-DATA',
-        data
+        payload: {id, login, email, isAuth}
     } as const
 }
 
-export const setAuthUserData = () => {
-    return (dispatch: Dispatch<AuthActionsTypes>) => {
+type ThunkType = ThunkAction<void, RootStateType, unknown, AuthActionsTypes>
+
+export const getAuthUserData = (): ThunkType => {
+
+    return (dispatch: ThunkDispatch<RootStateType, unknown, AuthActionsTypes>) => {
         authAPI.authMe().then(data => {
             if (data.resultCode === 0) {
-                dispatch(setAuthUserDataAC(data.data))
+                let {id, login, email} = data.data
+                let isAuth = true
+                dispatch(setAuthUserDataAC({id, login, email, isAuth}))
             }
         })
     }
 }
 
-const loginAC = (data: FormDataType) => {
-    return {
-        type: 'LOGIN',
-        data
-    } as const
+export const login = (data: FormDataType): ThunkType => {
+
+    return (dispatch: ThunkDispatch<RootStateType, unknown, AuthActionsTypes>) => {
+
+        authAPI.login(data).then(response => {
+
+            if (response.data.resultCode === 0) {
+                dispatch(getAuthUserData())
+            }
+        })
+    }
 }
 
-export const login = (data: FormDataType) => {
-    return (dispatch: Dispatch<AuthActionsTypes>) => {
-        authAPI.login(data).then(response => {
+export const logout = (): ThunkType => {
+    return (dispatch: ThunkDispatch<RootStateType, unknown, AuthActionsTypes>) => {
+        authAPI.logout().then(response => {
             if (response.data.resultCode === 0) {
-                dispatch(loginAC(data))
+                let id = null,
+                    login = null,
+                    email = null,
+                    isAuth = false;
+                dispatch(setAuthUserDataAC({id, login, email, isAuth}))
             }
         })
     }
