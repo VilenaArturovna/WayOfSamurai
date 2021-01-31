@@ -12,7 +12,7 @@ import instagram from "../../../assets/images/instagram_108043.svg"
 import youtube from "../../../assets/images/circle-youtube_icon-icons.com_66837.svg"
 import github from "../../../assets/images/github_icon-icons.com_65450.svg"
 import mainlink from "../../../assets/images/mainLink.svg"
-import ProfileStatus from "./ProfileStatus";
+import ProfileStatus from "./ProfileStatusWithHooks";
 
 type PropsType = {
     profile: ProfileType
