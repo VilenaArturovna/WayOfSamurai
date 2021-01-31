@@ -4,8 +4,15 @@ import {follow, getUsersTC, onPageChangedTC, unfollow, UserType} from "../../red
 import {RootStateType} from "../../redux/store";
 import {Users} from "./Users";
 import {Preloader} from "../Common/Preloader/Preloader";
-import {withAuthRedirect} from "../../hoc/WithAuthRedirect";
 import {compose} from "redux";
+import {
+    getCurrentPage,
+    getFollowingInProgress,
+    getIsFetching,
+    getPageSize,
+    getTotalUsersCount,
+    getUsers
+} from "../../redux/UsersSelectors";
 
 type MapStatePropsType = {
     users: Array<UserType>
@@ -32,9 +39,8 @@ class UsersContainer extends React.Component<PropsType, any> {
         this.props.getUsersTC(this.props.currentPage, this.props.pageSize)
     }
 
-
     onPageChanged = (pageNumber: number) => {
-        this.props.onPageChangedTC(pageNumber,this.props.pageSize)
+        this.props.onPageChangedTC(pageNumber, this.props.pageSize)
     }
 
     render = () => {
@@ -44,19 +50,19 @@ class UsersContainer extends React.Component<PropsType, any> {
                    currentPage={this.props.currentPage} onPageChanged={this.onPageChanged}
                    pageSize={this.props.pageSize} totalUsersCount={this.props.totalUsersCount}
                    followingInProgress={this.props.followingInProgress}
-                   />
+            />
         </>
     }
 }
 
 const mapStateToProps = (state: RootStateType) => {
     return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress,
+        users: getUsers(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        followingInProgress: getFollowingInProgress(state),
     }
 }
 
