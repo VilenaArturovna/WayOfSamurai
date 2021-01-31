@@ -1,5 +1,6 @@
 import {UsersType} from "./UsersReducer";
 import {AuthDataType} from "./authReducer";
+import {AppType} from "./appReducer";
 
 export type ProfileType = {
     aboutMe: string
@@ -53,5 +54,6 @@ export type RootStateType = {
     dialogsPage: DialogsPageType
     usersPage: UsersType
     auth: AuthDataType
+    app: AppType
 }
 

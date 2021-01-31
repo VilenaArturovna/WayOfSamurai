@@ -60,5 +60,5 @@ const mapStateToProps = (state: RootStateType) => {
     }
 }
 
-export default compose<React.ComponentType>(connect(mapStateToProps, {follow, unfollow, getUsersTC, onPageChangedTC}), withAuthRedirect)
+export default compose<React.ComponentType>(connect(mapStateToProps, {follow, unfollow, getUsersTC, onPageChangedTC}))
 (UsersContainer)

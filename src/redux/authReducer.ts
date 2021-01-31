@@ -11,16 +11,8 @@ export type AuthDataType = {
     login: string | null
     isAuth: boolean
 }
-/*
-type loginType = {
-    email: string
-    password: string
-    rememberMe: boolean
-}
-*/
 
-
-type AuthActionsTypes = ReturnType<typeof setAuthUserDataAC> | FormAction
+export type AuthActionsTypes = ReturnType<typeof setAuthUserDataAC> | FormAction
 
 let initialState = {
     id: null,
@@ -46,12 +38,14 @@ const setAuthUserDataAC = ({id, login, email, isAuth}: AuthDataType) => {
     } as const
 }
 
+type getAuthUserDataThunkType = ThunkAction<Promise<void>, RootStateType, unknown, AuthActionsTypes>
 type ThunkType = ThunkAction<void, RootStateType, unknown, AuthActionsTypes>
 
-export const getAuthUserData = (): ThunkType => {
+export const getAuthUserData = (): getAuthUserDataThunkType => {
 
     return (dispatch: ThunkDispatch<RootStateType, unknown, AuthActionsTypes>) => {
-        authAPI.authMe().then(data => {
+        debugger
+        return authAPI.authMe().then(data => {
             if (data.resultCode === 0) {
                 let {id, login, email} = data.data
                 let isAuth = true

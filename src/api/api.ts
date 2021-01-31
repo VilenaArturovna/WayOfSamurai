@@ -46,3 +46,7 @@ export const profileAPI = {
         return instance.put('profile/status', {status: newStatus})
     }
 }
+
+export const appAPI = {
+
+}
