@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react'
+import React, {ChangeEvent, useEffect, useState} from 'react'
 
 type PropsType = {
     status: string
@@ -9,6 +9,10 @@ function ProfileStatus(props: PropsType) {
 
     let [editMode, setEditMode] = useState<boolean>(false)
     let [status, setStatus] = useState<string>(props.status)
+
+    useEffect(() => {                   //перерисовывается, когда меняется статус, иначе иногда пустой инпут
+        setStatus(props.status)
+    }, [props.status])
 
     const activateEditMode = () => {
         setEditMode(true)
