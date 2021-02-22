@@ -11,7 +11,7 @@ type PropsType = {
     addPost: (newPostText: string) => void
 }
 
-function MyPosts(props: PropsType) {
+const MyPosts = React.memo((props: PropsType) => {
 
     let postsElements = props.posts.map(post => <Post message={post.message} likesCount={post.likesCount}/>);
 
@@ -32,7 +32,7 @@ function MyPosts(props: PropsType) {
             </div>
         </div>
     )
-}
+});
 
 export default MyPosts;
 

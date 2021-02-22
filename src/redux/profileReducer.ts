@@ -5,7 +5,8 @@ import {profileAPI} from "../api/api";
 
 type ActionsTypes = ReturnType<typeof addPost> |
     ReturnType<typeof setProfile> |
-    ReturnType<typeof setStatus>
+    ReturnType<typeof setStatus> |
+    ReturnType<typeof deletePost>
 
 let initialState = {
     posts: [
@@ -42,13 +43,16 @@ let initialState = {
 export const profileReducer = (state: PostsPageType = initialState, action: ActionsTypes) => {
     switch (action.type) {
         case 'ADD-POST': {
-            debugger
+
             let newPost: PostsType = {
                 id: 5,
                 message: action.newPostText,
                 likesCount: 0
             };
             return {...state, posts: [...state.posts, newPost]};
+        }
+        case "DELETE-POST": {
+            return {...state, posts: state.posts.filter(p => p.id != action.id)}
         }
         case 'SET-PROFILE': {
             return {...state, profile: action.profile}
@@ -62,10 +66,15 @@ export const profileReducer = (state: PostsPageType = initialState, action: Acti
 }
 
 export const addPost = (newPostText: string) => {
-    debugger
     return {
         type: 'ADD-POST',
         newPostText
+    } as const
+}
+export const deletePost = (id: number) => {
+    return {
+        type: 'DELETE-POST',
+        id
     } as const
 }
 export const setProfile = (profile: ProfileType) => {
