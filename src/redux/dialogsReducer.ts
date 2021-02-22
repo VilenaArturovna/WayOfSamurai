@@ -13,29 +13,21 @@ let initialState = {
         {id: 2, message: 'How are you?'},
         {id: 3, message: 'I\'m fine'},
     ],
-
 }
 
 type ActionsType = ReturnType<typeof sendMessage>
 
 export const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsType) => {
     switch (action.type) {
-        case "SEND-MESSAGE":
+        case "dialogs/SEND-MESSAGE":
             debugger
             return {
                 ...state,
                 messages: [...state.messages, {id: 4, message: action.newMessageText}]
             };
-
         default:
             return state
     }
 }
 
-export const sendMessage = (newMessageText: string) => {
-    debugger
-    return {
-        type: 'SEND-MESSAGE',
-        newMessageText
-    } as const
-}
+export const sendMessage = (newMessageText: string) => ({type: 'dialogs/SEND-MESSAGE', newMessageText} as const)

@@ -31,16 +31,15 @@ type MapDispatchPropsType = {
 type PropsType = MapStatePropsType & MapDispatchPropsType
 
 class UsersContainer extends React.Component<PropsType, any> {
-    /*constructor(props: PropsType) {
-        super(props);
-    }*/
 
     componentDidMount() {
-        this.props.getUsersTC(this.props.currentPage, this.props.pageSize)
+        const {currentPage, pageSize} = this.props
+        this.props.getUsersTC(currentPage, pageSize)
     }
 
     onPageChanged = (pageNumber: number) => {
-        this.props.onPageChangedTC(pageNumber, this.props.pageSize)
+        const {pageSize} = this.props
+        this.props.onPageChangedTC(pageNumber, pageSize)
     }
 
     render = () => {
@@ -66,5 +65,6 @@ const mapStateToProps = (state: RootStateType) => {
     }
 }
 
-export default compose<React.ComponentType>(connect(mapStateToProps, {follow, unfollow, getUsersTC, onPageChangedTC}))
+export default compose<React.ComponentType>(connect(mapStateToProps,
+    {follow, unfollow, getUsersTC, onPageChangedTC}))
 (UsersContainer)

@@ -42,37 +42,7 @@ it('length of posts should be incremented', () => {
 })
 
 it('message of new post should be correct', () => {
-    let state = {
-        posts: [
-            {id: 1, message: 'Hello', likesCount: 12},
-            {id: 2, message: 'My name is...', likesCount: 25},
-            {id: 2, message: 'Boo', likesCount: 209},
-            {id: 2, message: 'Bla-bla', likesCount: 5},
-        ],
 
-        profile: {
-            aboutMe: "sdfsdfsdf",
-            contacts: {
-                facebook: null,
-                website: null,
-                vk: null,
-                twitter: null,
-                instagram: null,
-                youtube: null,
-                github: null,
-                mainLink: null
-            },
-            lookingForAJob: false,
-            lookingForAJobDescription: '',
-            fullName: "AlexanderKhodaryonok",
-            userId: 3,
-            photos: {
-                small: null,
-                large: null
-            }
-        },
-        status: ''
-    }
     let action = addPost('ho-ho-ho')
 
     let newState = profileReducer(state, action)

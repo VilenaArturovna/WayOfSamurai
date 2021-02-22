@@ -35,7 +35,6 @@ const setInitialized = () => {
 
 export const initializeApp = (): ThunkType => {
     return (dispatch: ThunkDispatch<RootStateType, unknown, AppActionsType>) => {
-        debugger
         let promise = dispatch(getAuthUserData())
         promise.then(() => {return dispatch(setInitialized())})
 
