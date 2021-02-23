@@ -5,7 +5,9 @@ type PropsType = {
     updateStatus: (status: string) => void
 }
 
-class ProfileStatus extends React.Component<PropsType> {
+//классовая компонента - перевела на хуки, эта не используется
+
+class ProfileStatusClass extends React.Component<PropsType> {
     state = {
         editMode: false,
         status: this.props.status
@@ -40,13 +42,10 @@ class ProfileStatus extends React.Component<PropsType> {
                     ? <span onDoubleClick={this.activateEditMode}>{this.props.status || 'No status'}</span>
                     : <div><input onChange={this.onStatusChange} autoFocus={true} onBlur={this.deactivateEditMode} value={this.state.status}/></div>
                 }
-
-
             </div>
         )
     }
 }
 
-
-export default ProfileStatus;
+export default ProfileStatusClass;
 

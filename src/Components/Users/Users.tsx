@@ -1,6 +1,6 @@
 import React from "react";
 import {UserType} from "../../redux/UsersReducer";
-import {Paginator} from "./Paginator";
+import {Paginator} from "../../utils/Paginator/Paginator";
 import {User} from "./User";
 
 type PropsType = {
@@ -22,8 +22,8 @@ export function Users(props: PropsType) {
                       followingInProgress={props.followingInProgress}/>
             </div>)
             }
-            <Paginator totalUsersCount={props.totalUsersCount} pageSize={props.pageSize} currentPage={props.currentPage}
-                       onPageChanged={props.onPageChanged}/>
+            <Paginator totalItemsCount={props.totalUsersCount} pageSize={props.pageSize} currentPage={props.currentPage}
+                       onPageChanged={props.onPageChanged} portionSize={10}/>
         </div>
     )
 }
