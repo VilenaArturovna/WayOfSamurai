@@ -9,10 +9,6 @@ import {compose} from "redux";
 type MapStatePropsType = {
     dialogsPage: DialogsPageType
 }
-type MapDispatchPropsType = {
-    sendMessage: (newMessageText: string) => void
-}
-type PropsType = MapStatePropsType & MapDispatchPropsType
 
 let mapStateToProps = (state: RootStateType): MapStatePropsType => {
     return {

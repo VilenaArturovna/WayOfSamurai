@@ -1,4 +1,3 @@
-import React from 'react';
 import {addPost} from "../../../redux/profileReducer";
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
@@ -7,14 +6,10 @@ import {PostsType, RootStateType} from "../../../redux/store";
 type MapStatePropsType = {
     posts: Array<PostsType>
     }
-type MapDispatchPropsType = {
-    addPost: (newPostText: string) => void
-}
 
 let mapStateToProps = (state: RootStateType): MapStatePropsType => {
     return {
         posts: state.profilePage.posts,
-
     }
 }
 
