@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack://src/utils/Paginator/Paginator.module.css"],"names":[],"mappings":"AAAA,+BACI,eACJ","file":"4.90befede.chunk.css","sourcesContent":[".selectedPage {\r\n    font-weight: bold;\r\n}"]}
