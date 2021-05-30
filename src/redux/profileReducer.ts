@@ -20,14 +20,14 @@ let initialState = {
     profile: {
         aboutMe: "",
         contacts: {
-            facebook: null,
-            website: null,
-            vk: null,
-            twitter: null,
-            instagram: null,
-            youtube: null,
-            github: null,
-            mainLink: null
+            facebook: '',
+            website: '',
+            vk: '',
+            twitter: '',
+            instagram: '',
+            youtube: '',
+            github: '',
+            mainLink: ''
         },
         lookingForAJob: false,
         lookingForAJobDescription: '',

@@ -29,7 +29,14 @@ function Login(props: PropsType) {
     }
 
     return <div>
-        <h1>LOGIN</h1>
+        <p>To log in get registered
+            <a href={'https://social-network.samuraijs.com/'}
+               target={'_blank'} rel="noopener noreferrer"> here
+            </a>
+        </p>
+        <p>or use common test account credentials:</p>
+        <p>Email: free@samuraijs.com</p>
+        <p>Password: free</p>
         <LoginReduxForm onSubmit={onSubmit}/>
     </div>
 }

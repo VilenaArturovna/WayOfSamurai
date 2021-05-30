@@ -19,5 +19,6 @@
     width: 32px;
 }
 .status {
+    padding-left: 10px;
     color: green;
 }

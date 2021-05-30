@@ -34,7 +34,7 @@ export type UsersActionsTypes = ReturnType<typeof followSuccess> |
 
 let initialState = {
     users: [],
-    pageSize: 10,
+    pageSize: 18,
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: false,

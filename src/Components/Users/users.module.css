@@ -1,0 +1,7 @@
+.usersBlock {
+    display: flex;
+    flex-wrap: wrap;
+}
+.userItem {
+    padding: 10px;
+}

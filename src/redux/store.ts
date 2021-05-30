@@ -2,18 +2,20 @@ import {UsersType} from "./UsersReducer";
 import {AuthDataType} from "./authReducer";
 import {AppType} from "./appReducer";
 
+export type ContactsType = {
+    github: string
+    vk: string
+    facebook: string
+    instagram: string
+    twitter: string
+    website: string
+    youtube: string
+    mainLink: string
+}
+
 export type ProfileType = {
     aboutMe: string
-    contacts: {
-        facebook: string | null
-        website: string | null
-        vk: string | null
-        twitter: string | null
-        instagram: string | null
-        youtube: string | null
-        github: string | null
-        mainLink: string | null
-    }
+    contacts: ContactsType
     lookingForAJob: boolean
     lookingForAJobDescription: string
     fullName: string

@@ -11,7 +11,7 @@ function Navbar() {
             <div className={styles.item}>
                 <NavLink to='/Dialogs' activeClassName={styles.active}>Messages</NavLink>
             </div>
-            <div className={styles.item}>
+            {/*<div className={styles.item}>
                 <NavLink to='/News' activeClassName={styles.active}>News</NavLink>
             </div>
             <div className={styles.item}>
@@ -19,13 +19,13 @@ function Navbar() {
             </div>
             <div className={styles.item}>
                 <NavLink to='/Settings' activeClassName={styles.active}>Settings</NavLink>
-            </div>
+            </div>*/}
             <div className={styles.item}>
                 <NavLink to='/Users' activeClassName={styles.active}>Users</NavLink>
             </div>
-            <div className={styles.item}>
+            {/*<div className={styles.item}>
                 <NavLink to='/Login' activeClassName={styles.active}>Login</NavLink>
-            </div>
+            </div>*/}
         </nav>
     )
 }

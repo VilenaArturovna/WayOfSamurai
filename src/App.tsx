@@ -29,7 +29,7 @@ type PropsType = MapDispatchPropsType & MapStatePropsType
 class App extends React.Component<PropsType, any> {
 
     componentDidMount() {
-        debugger
+
         this.props.initializeApp()
     }
 
